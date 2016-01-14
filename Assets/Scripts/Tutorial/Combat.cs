@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class ComboSystem : NetworkBehaviour
+public class Combat : NetworkBehaviour
 {
     public const int maxHP = 100;
     public bool destroyOnDeathl;

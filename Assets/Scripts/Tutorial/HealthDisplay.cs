@@ -5,11 +5,11 @@ public class HealthDisplay : MonoBehaviour
 {
     GUIStyle healthStyle;
     GUIStyle backStyle;
-    ComboSystem combat;
+    Combat combat;
 
     void Awake()
     {
-        combat = GetComponent<ComboSystem>();
+        combat = GetComponent<Combat>();
     }
 
     void OnGUI()
@@ -18,7 +18,7 @@ public class HealthDisplay : MonoBehaviour
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         GUI.color = Color.grey;
         GUI.backgroundColor = Color.grey;
-        GUI.Box(new Rect(pos.x - 26, Screen.height - pos.y + 21, ComboSystem.maxHP / 2, 5), ".", backStyle);
+        GUI.Box(new Rect(pos.x - 26, Screen.height - pos.y + 21, Combat.maxHP / 2, 5), ".", backStyle);
 
         GUI.color = Color.green;
         GUI.backgroundColor = Color.green;

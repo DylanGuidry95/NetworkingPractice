@@ -8,7 +8,7 @@ public class BulletBehavior : MonoBehaviour
 	void OnCollisionEnter(Collision a)
     {
         GameObject hit = a.gameObject;
-        ComboSystem hitCombat = hit.GetComponent<ComboSystem>();
+        Combat hitCombat = hit.GetComponent<Combat>();
 
         if(hitCombat != null)
         {
