@@ -37,19 +37,11 @@ public class CharacterMovement : NetworkBehaviour
 
         float rot = Input.GetAxis("Rotation");
 
-        transform.Translate(x / 5,0,z / 5);
-        transform.Rotate(Vector3.up, rot * 5);
+        transform.Translate(x / 10,0,z / 10);
+        if(rot != 0)
+            transform.Rotate(Vector3.up, rot * 2);
 
         if (Input.GetKeyDown(KeyCode.Joystick1Button4))
             CmdFire();
 	}
-
-    void Fire()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position - transform.forward, Quaternion.identity) as GameObject;
-
-        bullet.GetComponent<Rigidbody>().velocity = -transform.forward * 4;
-
-        Destroy(bullet, 2.0f);
-    }
 }
