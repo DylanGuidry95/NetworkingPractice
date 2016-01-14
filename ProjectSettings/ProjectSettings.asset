@@ -410,12 +410,14 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
+  - CloudNetworkingId::CloudNetworkingId
   - Standalone::ScriptingBackend
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - WebPlayer::ScriptingBackend
+  CloudNetworkingId::CloudNetworkingId: 673151
   Standalone::ScriptingBackend: 0
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
@@ -432,13 +434,17 @@ PlayerSettings:
   WebGL::useEmbeddedResources: 0
   XboxOne::enus: 1
   stringPropertyNames:
+  - Build_ServiceEnabled::Build_ServiceEnabled
+  - UNet_ServiceEnabled::UNet_ServiceEnabled
   - WebGL::emscriptenArgs
   - WebGL::template
   - additionalIl2CppArgs::additionalIl2CppArgs
+  Build_ServiceEnabled::Build_ServiceEnabled: True
+  UNet_ServiceEnabled::UNet_ServiceEnabled: True
   WebGL::emscriptenArgs: 
   WebGL::template: APPLICATION:Default
   additionalIl2CppArgs::additionalIl2CppArgs: 
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudProjectId: d558e0e6-8252-42e2-aad3-e6c02923b8e1
+  projectName: NetworkingPractice
+  organizationId: dylan-3923841
   cloudEnabled: 0
