@@ -1,0 +1,6 @@
+5.3.1f1:2.1.0.0
+WebGL
+C:/Users/dylan.guidry/Desktop/Unity 5.3.1f1/Editor/Data/Managed/UnityEngine.dll
+C:/Users/dylan.guidry/Desktop/Unity 5.3.1f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+C:/Users/dylan.guidry/Desktop/Unity 5.3.1f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+C:/Users/dylan.guidry/Desktop/Unity 5.3.1f1/Editor/Data/Managed/UnityEditor.dll
