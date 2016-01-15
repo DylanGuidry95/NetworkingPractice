@@ -88,7 +88,7 @@ public class NetworkSystems : MonoBehaviour
     public void CreateServer(string name)
     {
         bool useNat = !Network.HavePublicAddress();
-        Network.InitializeServer(32, 25000,true);
+        Network.InitializeServer(32, 25000,useNat);
         IP.text = Network.natFacilitatorIP;
     }
 
