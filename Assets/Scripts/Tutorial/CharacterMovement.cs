@@ -6,11 +6,23 @@ public class CharacterMovement : MonoBehaviour
 {
     public GameObject bulletPrefab;
     
-    void Start()
+
+    void OnConnectedToServer()
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
+    void OnDisconnectedFromServer()
+    {
+        GameObject[] g = FindObjectsOfType<GameObject>();
+        for (int i = 0; i < g.Length; i++)
+        {
+            if (g[i].GetComponent<CharacterMovement>())
+            {
+                Destroy(g[i].gameObject);
+            }
+        }
+    }
 
     void CmdFire()
     {

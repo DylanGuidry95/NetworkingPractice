@@ -12,14 +12,28 @@ public class ServerGUI : MonoBehaviour
 
     public GameObject Player;
 
+    bool connected = false;
+
     void OnServerInitialized()
     {
         SpawnPlayer();
+
+        ServerCreation.SetActive(false);
+        connected = true;
     }
 
     void OnConnectedToServer()
     {
         SpawnPlayer();
+        ServerCreation.SetActive(false);
+        connected = true;
+    }
+
+    void OnPlayerDisconnected(NetworkPlayer player)
+    {
+        Network.RemoveRPCs(player);
+        Network.DestroyPlayerObjects(player);
+        connected = false;
     }
 
     public void CreateServer()
@@ -47,36 +61,48 @@ public class ServerGUI : MonoBehaviour
         //Creates a array of all servers in the list
         HostData[] data = MasterServer.PollHostList();
 
-        // Go through all the hosts in the host list
-        foreach (var element in data)
+        if(connected == false)
         {
-            GUILayout.BeginHorizontal();
-            var name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
-            GUILayout.Label(name);
-            GUILayout.Space(5);
-            string hostInfo;
-            hostInfo = "[";
-            foreach (var host in element.ip)
-                hostInfo = hostInfo + host + ":" + element.port + " ";
-            hostInfo = hostInfo + "]";
-            GUILayout.Label(hostInfo);
-            GUILayout.Space(5);
-            GUILayout.Label(element.comment);
-            GUILayout.Space(5);
-            GUILayout.FlexibleSpace();
-
-            if (GUILayout.Button("Connect"))
+            // Go through all the hosts in the host list
+            foreach (var element in data)
             {
-                // Connect to HostData struct, internally the correct method is used (GUID when using NAT).
-                Network.Connect(element);
-            }
+                GUILayout.BeginHorizontal();
+                var name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
+                GUILayout.Label(name);
+                GUILayout.Space(5);
+                string hostInfo;
+                hostInfo = "[";
+                foreach (var host in element.ip)
+                    hostInfo = hostInfo + host + ":" + element.port + " ";
+                hostInfo = hostInfo + "]";
+                GUILayout.Label(hostInfo);
+                GUILayout.Space(5);
+                GUILayout.Label(element.comment);
+                GUILayout.Space(5);
+                GUILayout.FlexibleSpace();
 
-            GUILayout.EndHorizontal();
+                if (GUILayout.Button("Connect"))
+                {
+                    // Connect to HostData struct, internally the correct method is used (GUID when using NAT).
+                    Network.Connect(element);
+                }
+
+                GUILayout.EndHorizontal();
+            }
         }
+ 
     }
 
     void SpawnPlayer()
     {
         Network.Instantiate(Player, Vector3.zero, Quaternion.identity, 0);
+    }
+
+    public void Disconnect()
+    {
+        Network.Disconnect();
+        if (Network.isServer)
+            MasterServer.UnregisterHost();
+        ServerCreation.SetActive(true);
     }
 }
