@@ -33,6 +33,7 @@ public class ServerGUI : MonoBehaviour
     {
         Network.RemoveRPCs(player);
         Network.DestroyPlayerObjects(player);
+        ServerCreation.SetActive(true);
         connected = false;
     }
 
@@ -103,6 +104,7 @@ public class ServerGUI : MonoBehaviour
         Network.Disconnect();
         if (Network.isServer)
             MasterServer.UnregisterHost();
+        connected = false;
         ServerCreation.SetActive(true);
     }
 }

@@ -24,15 +24,18 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    void CmdFire()
+    void Fire()
     {
-        GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity) as GameObject;
+        if (GetComponent<NetworkView>().isMine == true)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity) as GameObject;
 
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 4;
+            bullet.GetComponent<Rigidbody>().velocity = transform.forward * 4;
 
-        //NetworkServer.Spawn(bullet);
+            Network.Instantiate(bullet, transform.position + transform.forward * 1.2f, Quaternion.identity, 0);
 
-        Destroy(bullet, 2.0f);
+            Destroy(bullet, 2.0f);
+        }
     }
 
     // Update is called once per frame
@@ -49,8 +52,8 @@ public class CharacterMovement : MonoBehaviour
             if (rot != 0)
                 transform.Rotate(Vector3.up, rot * 2);
 
-            if (Input.GetKeyDown(KeyCode.Joystick1Button4))
-                CmdFire();
+            if (Input.GetKeyDown(KeyCode.Space))
+                Fire();
         }
 	}
 }
