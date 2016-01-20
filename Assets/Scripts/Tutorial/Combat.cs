@@ -11,30 +11,30 @@ public class Combat : MonoBehaviour
 
     public void TakeDmg(int dmg)
     {
-
-
-        HP -= dmg;
-        if(HP <= 0)
+        if(GetComponent<NetworkView>().isMine == true)
         {
-            if(destroyOnDeathl)
+            HP -= dmg;
+            if (HP <= 0)
             {
-                Destroy(gameObject);
+                if (destroyOnDeathl)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    HP = maxHP;
+                    Respawn();
+                }
             }
-            else
-            {
-                HP = maxHP;
-                //RpcRespawn();
-            }
-
         }
     }
 
 
-    //void RpcRespawn()
-    //{
-    //    if(isLocalPlayer)
-    //    {
-    //        transform.position = Vector3.zero;
-    //    }
-    //}
+    void Respawn()
+    {
+        if (Network.isClient)
+        {
+            transform.position = Vector3.zero;
+        }
+    }
 }

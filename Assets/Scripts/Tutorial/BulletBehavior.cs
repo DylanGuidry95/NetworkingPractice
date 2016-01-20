@@ -7,13 +7,16 @@ public class BulletBehavior : MonoBehaviour
 
 	void OnCollisionEnter(Collision a)
     {
-        GameObject hit = a.gameObject;
-        Combat hitCombat = hit.GetComponent<Combat>();
-
-        if(hitCombat != null)
+        if(GetComponent<NetworkView>().isMine == true)
         {
-            hitCombat.TakeDmg(10);
-            Destroy(gameObject);
+            GameObject hit = a.gameObject;
+            Combat hitCombat = hit.GetComponent<Combat>();
+
+            if (hitCombat != null)
+            {
+                hitCombat.TakeDmg(10);
+                Destroy(gameObject);
+            }
         }
     }
 
