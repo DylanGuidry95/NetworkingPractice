@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     public GameObject bulletPrefab;
     
 
-    void OnConnectedToServer()
+    void Start()
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
     }
@@ -26,16 +26,11 @@ public class CharacterMovement : MonoBehaviour
 
     void Fire()
     {
-        if (GetComponent<NetworkView>().isMine == true)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity) as GameObject;
+            GameObject bullet = Network.Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity, 0) as GameObject;
 
             bullet.GetComponent<Rigidbody>().velocity = transform.forward * 4;
 
-            Network.Instantiate(bullet, transform.position + transform.forward * 1.2f, Quaternion.identity, 0);
-
             Destroy(bullet, 2.0f);
-        }
     }
 
     // Update is called once per frame
