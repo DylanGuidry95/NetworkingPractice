@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Networking;
 
-public class Combat : NetworkBehaviour
+
+public class Combat : MonoBehaviour
 {
     public const int maxHP = 100;
     public bool destroyOnDeathl;
-    [SyncVar]
+
     public int HP = maxHP;
 
     public void TakeDmg(int dmg)
     {
-        if (!isServer)
-            return;
+
 
         HP -= dmg;
         if(HP <= 0)
@@ -24,18 +23,18 @@ public class Combat : NetworkBehaviour
             else
             {
                 HP = maxHP;
-                RpcRespawn();
+                //RpcRespawn();
             }
 
         }
     }
 
-    [ClientRpc]
-    void RpcRespawn()
-    {
-        if(isLocalPlayer)
-        {
-            transform.position = Vector3.zero;
-        }
-    }
+
+    //void RpcRespawn()
+    //{
+    //    if(isLocalPlayer)
+    //    {
+    //        transform.position = Vector3.zero;
+    //    }
+    //}
 }

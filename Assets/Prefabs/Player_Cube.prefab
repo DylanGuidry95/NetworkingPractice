@@ -11,12 +11,11 @@ GameObject:
   - 33: {fileID: 3380420}
   - 65: {fileID: 6541874}
   - 23: {fileID: 2318314}
-  - 114: {fileID: 11458636}
   - 114: {fileID: 11453828}
-  - 114: {fileID: 11485500}
   - 114: {fileID: 11487792}
   - 114: {fileID: 11433320}
   - 114: {fileID: 11478448}
+  - 148: {fileID: 14896538}
   m_Layer: 0
   m_Name: Player_Cube
   m_TagString: Untagged
@@ -134,38 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 116090, guid: 7f8910e96de42684f85397d7d6f4c4f9, type: 2}
---- !u!114 &11458636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 83
-    i1: 92
-    i2: 72
-    i3: 8
-    i4: 200
-    i5: 195
-    i6: 168
-    i7: 180
-    i8: 219
-    i9: 201
-    i10: 6
-    i11: 64
-    i12: 6
-    i13: 69
-    i14: 244
-    i15: 207
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &11478448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,26 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185a0cce13ecc6f42b02071a2c96596a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11485500
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 1
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &11487792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +157,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnDeathl: 0
   HP: 100
+--- !u!148 &14896538
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108144}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 495654}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

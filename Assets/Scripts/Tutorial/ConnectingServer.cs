@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 public class ConnectingServer : MonoBehaviour
 {
     public GameObject pPrefab;
+
     void Awake()
     {
         MasterServer.RequestHostList("MyGame");
@@ -30,10 +31,10 @@ public class ConnectingServer : MonoBehaviour
             GUILayout.Label(element.comment);
             GUILayout.Space(5);
             GUILayout.FlexibleSpace();
+
             if (GUILayout.Button("Connect"))
             {
                 // Connect to HostData struct, internally the correct method is used (GUID when using NAT).
-                Instantiate(pPrefab);
                 Network.Connect(element);
             }
             GUILayout.EndHorizontal();
