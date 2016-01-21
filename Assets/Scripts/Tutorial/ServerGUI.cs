@@ -14,12 +14,20 @@ public class ServerGUI : MonoBehaviour
 
     bool connected = false;
 
+    /// <summary>
+    /// When a server have created it sets the connected bool to true and 
+    /// turns off all Ui elements that are parented to the ServerCreation gameobject.
+    /// </summary>
     void OnServerInitialized()
     {
         ServerCreation.SetActive(false);
         connected = true;
     }
 
+    /// <summary>
+    /// When a client connects to the server the SpawnPlayer function will be called 
+    /// and all UI elements that are parented to the ServerCreation gameobject are turned off.
+    /// </summary>
     void OnConnectedToServer()
     {
         if(!Network.isServer)
@@ -30,6 +38,11 @@ public class ServerGUI : MonoBehaviour
         connected = true;
     }
 
+    /// <summary>
+    /// When a player that was connected to the server disconnects it will destroy the object that represented that player 
+    /// and on that player's client the UI elements to create a server will be re-enabled.
+    /// </summary>
+    /// <param name="player"></param>
     void OnPlayerDisconnected(NetworkPlayer player)
     {
         Network.RemoveRPCs(player);
@@ -38,20 +51,21 @@ public class ServerGUI : MonoBehaviour
         connected = false;
     }
 
+    /// <summary>
+    /// Creates a server using the data the user has inputted 
+    /// into the HostName and ServerName InputFields.
+    /// </summary>
     public void CreateServer()
     {
         Network.InitializeServer(32, 25002, !Network.HavePublicAddress());
         MasterServer.RegisterHost("Networking Demo" , ServerName.text, HostName.text);
     }
 
-    void ClearList(Button[] b)
-    {
-        for(int i = 0; i < b.Length; i++)
-        {
-            Destroy(b[i].gameObject);
-        }
-    }
-
+    /// <summary>
+    /// Checks for any host that are hosting the current application the client is running and 
+    /// will create UI elements based on the information received from the servers if any are found 
+    /// and if the user clicks on the connect button for one of the server the user will then attempt to connect.
+    /// </summary>
     void OnGUI()
     {
         if (Network.isServer)
@@ -95,11 +109,20 @@ public class ServerGUI : MonoBehaviour
  
     }
 
+
+    /// <summary>
+    /// Instantiates the player prefab.
+    /// </summary>
     void SpawnPlayer()
     {
         Network.Instantiate(Player, Vector3.zero, Quaternion.identity, 0);
     }
 
+    /// <summary>
+    /// When the disconnect UI element is hit the client is disconnected from the server or 
+    /// if the client was hosting the server the server will then be shut down 
+    /// and all players that were connected will be disconnected. 
+    /// </summary>
     public void Disconnect()
     {
         Network.Disconnect();

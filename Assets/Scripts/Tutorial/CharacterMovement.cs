@@ -5,13 +5,18 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    
 
+    /// <summary>
+    /// Sets the player’s color to red.
+    /// </summary>
     void Start()
     {
         GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
+    /// <summary>
+    /// Finds all gameobjects in the scene and deletes them when the serven disconnects.
+    /// </summary>
     void OnDisconnectedFromServer()
     {
         GameObject[] g = FindObjectsOfType<GameObject>();
@@ -24,6 +29,9 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shoots a bullet from the player's position.
+    /// </summary>
     void Fire()
     {
             GameObject bullet = Network.Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity, 0) as GameObject;
@@ -36,6 +44,9 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Takes user input and updates the player’s position and calls the fire function.
+    /// </summary>
     void Update ()
     {
         if (GetComponent<NetworkView>().isMine == true)
