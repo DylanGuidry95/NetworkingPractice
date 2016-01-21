@@ -77,6 +77,11 @@ public class ServerGUI : MonoBehaviour
         //Creates a array of all servers in the list
         HostData[] data = MasterServer.PollHostList();
 
+        if(Application.isWebPlayer)
+        {
+            ServerCreation.SetActive(false);
+        }
+
         if(connected == false)
         {
             // Go through all the hosts in the host list
