@@ -77,7 +77,7 @@ public class ServerGUI : MonoBehaviour
         //Creates a array of all servers in the list
         HostData[] data = MasterServer.PollHostList();
 
-        if(Application.isWebPlayer)
+        if(Application.platform == RuntimePlatform.WindowsWebPlayer)
         {
             ServerCreation.SetActive(false);
         }
