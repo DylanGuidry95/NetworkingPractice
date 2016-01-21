@@ -31,6 +31,11 @@ public class CharacterMovement : MonoBehaviour
             bullet.GetComponent<Rigidbody>().velocity = transform.forward * 4;
 
             Destroy(bullet, 2.0f);
+            if(bullet.gameObject == null)
+            {
+                Network.Destroy(bullet);
+            }
+
     }
 
     // Update is called once per frame

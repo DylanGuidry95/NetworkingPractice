@@ -16,15 +16,16 @@ public class ServerGUI : MonoBehaviour
 
     void OnServerInitialized()
     {
-        SpawnPlayer();
-
         ServerCreation.SetActive(false);
         connected = true;
     }
 
     void OnConnectedToServer()
     {
-        SpawnPlayer();
+        if(!Network.isServer)
+        {
+            SpawnPlayer();
+        }
         ServerCreation.SetActive(false);
         connected = true;
     }

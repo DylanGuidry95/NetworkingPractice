@@ -12,6 +12,7 @@ public class BulletBehavior : MonoBehaviour
             {
                 hitCombat.TakeDmg(10);
                 Destroy(gameObject);
+                Network.Destroy(gameObject);
             }
     }
 }
