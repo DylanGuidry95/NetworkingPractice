@@ -32,9 +32,6 @@ public class Combat : MonoBehaviour
 
     void Respawn()
     {
-        if (Network.isClient)
-        {
             transform.position = Vector3.zero;
-        }
     }
 }
