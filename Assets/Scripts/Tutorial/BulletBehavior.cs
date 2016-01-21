@@ -3,6 +3,12 @@ using System.Collections;
 
 public class BulletBehavior : MonoBehaviour
 {
+    public float timer = 0;
+    void Awake()
+    {
+        timer = Time.deltaTime;
+    }
+
 	void OnCollisionEnter(Collision a)
     {
             GameObject hit = a.gameObject;
@@ -11,8 +17,7 @@ public class BulletBehavior : MonoBehaviour
             if (hitCombat != null)
             {
                 hitCombat.TakeDmg(10);
-                Destroy(gameObject);
-                Network.Destroy(gameObject);
+                Network.Destroy(this.gameObject);
             }
     }
 }

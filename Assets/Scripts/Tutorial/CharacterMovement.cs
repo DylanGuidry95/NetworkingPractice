@@ -29,12 +29,9 @@ public class CharacterMovement : MonoBehaviour
             GameObject bullet = Network.Instantiate(bulletPrefab, transform.position + transform.forward * 1.2f, Quaternion.identity, 0) as GameObject;
 
             bullet.GetComponent<Rigidbody>().velocity = transform.forward * 4;
-
-            Destroy(bullet, 2.0f);
-            if(bullet.gameObject == null)
-            {
+            
+            if(bullet.GetComponent<BulletBehavior>().timer >= 2.0f)
                 Network.Destroy(bullet);
-            }
 
     }
 
